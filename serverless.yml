@@ -1,0 +1,17 @@
+service: sls-rest-api
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  profile: bb-deploy
+
+functions:
+  app:
+    handler: handler.run
+    events:
+      - http: 'ANY /'
+      - http: 'ANY {proxy+}'
